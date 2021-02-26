@@ -1,0 +1,11 @@
+@font-face {
+    font-family: Pigmento;
+    src: url(font/pigment\ DEMO.otf);
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.733);
+    color: white;
+    font-family: Pigmento;
+    font-size: 30px;
+}

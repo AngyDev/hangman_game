@@ -12,7 +12,7 @@ class Hangman {
     }
 
     /**
-     * Function that chooses the word to guess
+     * Chooses the word to guess
      * @param {Array} array - The list of words 
      * @returns The object with the word to guess
      */
@@ -21,17 +21,34 @@ class Hangman {
     }
 
     /**
-     * Function that display the clue of the word to guess
+     * Shows the clue of the word to guess
      * @returns the clue
      */
     displayClue() {
         return this.objWord.clue;
     }
 
+    /**
+     * Shows the unserscore of the word to guess
+     * @return a string with the unserscores 
+     */
+    displayWord() {
+        let arrWord;
+        this.word = this.objWord.word;
+        arrWord = this.word.split('');
+
+        // Creates an array of the length of the arrWord with only unserscore string
+        const arrWordToGuess = arrWord.map(x => "_");
+
+        return arrWordToGuess.join(' ');
+    }
+
 }
 
 const showClue = document.querySelector('[show-clue]');
+const wordToGuess = document.querySelector('[word-to-guess]');
 
 const hangman = new Hangman();
 
 showClue.innerHTML = hangman.displayClue();
+wordToGuess.innerHTML = hangman.displayWord();

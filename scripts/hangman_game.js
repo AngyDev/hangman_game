@@ -8,7 +8,7 @@ var words = [
 class Hangman {
 
     constructor() {
-
+        this.chooseWord(words);
     }
 
     /**
@@ -20,6 +20,18 @@ class Hangman {
         this.objWord = array[Math.floor(Math.random() * array.length)];
     }
 
+    /**
+     * Function that display the clue of the word to guess
+     * @returns the clue
+     */
+    displayClue() {
+        return this.objWord.clue;
+    }
+
 }
 
+const showClue = document.querySelector('[show-clue]');
+
 const hangman = new Hangman();
+
+showClue.innerHTML = hangman.displayClue();

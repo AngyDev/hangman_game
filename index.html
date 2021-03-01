@@ -4,40 +4,56 @@
 <head>
     <title>Hangman Game</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-    <h1>Hangman Game</h1>
+    <div class="header">
+        <h1>Hangman Game</h1>
 
-    <p show-clue></p>
-    <p word-to-guess></p>
+        <p message></p>
 
-    <button letter>A</button>
-    <button letter>B</button>
-    <button letter>C</button>
-    <button letter>D</button>
-    <button letter>E</button>
-    <button letter>F</button>
-    <button letter>G</button>
-    <button letter>H</button>
-    <button letter>I</button>
-    <button letter>J</button>
-    <button letter>K</button>
-    <button letter>L</button>
-    <button letter>M</button>
-    <button letter>N</button>
-    <button letter>O</button>
-    <button letter>P</button>
-    <button letter>Q</button>
-    <button letter>R</button>
-    <button letter>S</button>
-    <button letter>T</button>
-    <button letter>U</button>
-    <button letter>V</button>
-    <button letter>W</button>
-    <button letter>X</button>
-    <button letter>Y</button>
-    <button letter>Z</button>
+        <button play-again style="display: none;">Play Again!</button>
+    </div>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <img hangman-img src="./img/hangman_white.png" alt="hangman" width="150" height="200">
+        </div>
+        <div class="grid-item">
+            <h2 show-clue></h2>
+            <h2 word-to-guess></h2>
+        </div>
+    </div>
+
+    <div class="letters-grid">
+        <button letter>A</button>
+        <button letter>B</button>
+        <button letter>C</button>
+        <button letter>D</button>
+        <button letter>E</button>
+        <button letter>F</button>
+        <button letter>G</button>
+        <button letter>H</button>
+        <button letter>I</button>
+        <button letter>J</button>
+        <button letter>K</button>
+        <button letter>L</button>
+        <button letter>M</button>
+        <button letter>N</button>
+        <button letter>O</button>
+        <button letter>P</button>
+        <button letter>Q</button>
+        <button letter>R</button>
+        <button letter>S</button>
+        <button letter>T</button>
+        <button letter>U</button>
+        <button letter>V</button>
+        <button letter>W</button>
+        <button letter>X</button>
+        <button letter>Y</button>
+        <button letter>Z</button>
+    </div>
 
     <script src="./scripts/hangman_game.js"></script>
 </body>

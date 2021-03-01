@@ -8,7 +8,6 @@ var words = [
 class Hangman {
 
     constructor() {
-        this.countError = 0;
         this.clear();
         this.chooseWord(words);
     }
@@ -16,6 +15,8 @@ class Hangman {
     clear() {
         this.countError = 0;
         letterButtons.forEach(button => button.disabled = false);
+        playAgain.style.display = "none";
+        message.innerHTML = "";
     }
 
     /**
@@ -31,7 +32,7 @@ class Hangman {
      * Shows the clue of the word to guess
      * @returns the clue
      */
-    displayClue() {
+    showClue() {
         return this.objWord.clue;
     }
 
@@ -39,7 +40,7 @@ class Hangman {
      * Shows the unserscore of the word to guess
      * @return a string with the unserscores 
      */
-    displayWord() {
+    showWord() {
         this.word = this.objWord.word;
         this.arrWord = this.word.toLowerCase().split('');
 
@@ -59,17 +60,16 @@ class Hangman {
             // inserts the letter in the array of the world to guess
             this.insertLetter(lowerLetter, indexWord, this.arrWordToGuess);
             // updates the word to guess 
-            this.updateDisplay();
+            this.updateWordToGuess();
 
             // checks if the word was guessed
             if (!this.arrWordToGuess.includes("_")) {
-                message.innerHTML = "Win!";
+                this.gameEnd("You Win!");
             }
         } else {
             this.countError += 1;
             if (this.countError === 3) {
-                message.innerHTML = "You Lost!";
-                letterButtons.forEach(button => button.disabled = true);
+                this.gameEnd("You Lost!");
             }
         }
     }
@@ -102,8 +102,18 @@ class Hangman {
     /**
      * Updates the html element of the word to guess
      */
-    updateDisplay() {
+    updateWordToGuess() {
         wordToGuess.innerHTML = this.arrWordToGuess.join(' ');
+    }
+
+    /**
+     * Show the message, disabled the buttons and show the play again button
+     * @param {String} msg The message to show
+     */
+    gameEnd(msg) {
+        message.innerHTML = msg;
+        letterButtons.forEach(button => button.disabled = true);
+        playAgain.style.display = "block";
     }
 
 }
@@ -112,11 +122,12 @@ const showClue = document.querySelector('[show-clue]');
 const wordToGuess = document.querySelector('[word-to-guess]');
 const letterButtons = document.querySelectorAll('[letter]');
 const message = document.querySelector('[message]');
+const playAgain = document.querySelector('[play-again]');
 
-const hangman = new Hangman();
+var hangman = new Hangman();
 
-showClue.innerHTML = hangman.displayClue();
-wordToGuess.innerHTML = hangman.displayWord();
+showClue.innerHTML = hangman.showClue();
+wordToGuess.innerHTML = hangman.showWord();
 
 letterButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -124,4 +135,10 @@ letterButtons.forEach(button => {
         // The button that is clicked is disabled
         button.disabled = true;
     })
+});
+
+playAgain.addEventListener('click', button => {
+    hangman = new Hangman();
+    showClue.innerHTML = hangman.showClue();
+    wordToGuess.innerHTML = hangman.showWord();
 });

@@ -8,7 +8,14 @@ var words = [
 class Hangman {
 
     constructor() {
+        this.countError = 0;
+        this.clear();
         this.chooseWord(words);
+    }
+
+    clear() {
+        this.countError = 0;
+        letterButtons.forEach(button => button.disabled = false);
     }
 
     /**
@@ -54,7 +61,17 @@ class Hangman {
             // updates the word to guess 
             this.updateDisplay();
 
-        } else {}
+            // checks if the word was guessed
+            if (!this.arrWordToGuess.includes("_")) {
+                message.innerHTML = "Win!";
+            }
+        } else {
+            this.countError += 1;
+            if (this.countError === 3) {
+                message.innerHTML = "You Lost!";
+                letterButtons.forEach(button => button.disabled = true);
+            }
+        }
     }
 
     /**
@@ -94,6 +111,7 @@ class Hangman {
 const showClue = document.querySelector('[show-clue]');
 const wordToGuess = document.querySelector('[word-to-guess]');
 const letterButtons = document.querySelectorAll('[letter]');
+const message = document.querySelector('[message]');
 
 const hangman = new Hangman();
 
@@ -102,6 +120,8 @@ wordToGuess.innerHTML = hangman.displayWord();
 
 letterButtons.forEach(button => {
     button.addEventListener('click', () => {
-        hangman.checkLetter(button.innerText)
+        hangman.checkLetter(button.innerText);
+        // The button that is clicked is disabled
+        button.disabled = true;
     })
 });

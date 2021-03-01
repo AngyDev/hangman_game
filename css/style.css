@@ -9,3 +9,17 @@ body {
     font-family: Pigmento;
     font-size: 30px;
 }
+
+button {
+    font-family: Pigmento;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.377);
+    border: none;
+    padding: 5px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 40px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

@@ -6,12 +6,12 @@
 body {
     background-color: rgba(0, 0, 0, 0.733);
     color: white;
-    font-family: Pigmento;
+    font-family: Pigmento, sans-serif;
     font-size: 30px;
 }
 
 button {
-    font-family: Pigmento;
+    font-family: Pigmento, sans-serif;
     color: white;
     background-color: rgba(0, 0, 0, 0.377);
     border: none;
@@ -22,4 +22,36 @@ button {
     font-size: 40px;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+button:disabled {
+    background-color: darkgrey;
+}
+
+.header {
+    text-align: center;
+}
+
+.header>button {
+    margin: 0 auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    width: 100%;
+}
+
+.grid-item {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.letters-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(13, 100px);
+    grid-template-rows: repeat(3, 100px);
 }

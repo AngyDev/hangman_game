@@ -17,6 +17,7 @@ class Hangman {
         letterButtons.forEach(button => button.disabled = false);
         playAgain.style.display = "none";
         message.innerHTML = "";
+        hangmanImg.src = "./img/hangman_white.png";
     }
 
     /**
@@ -68,6 +69,7 @@ class Hangman {
             }
         } else {
             this.countError += 1;
+            hangmanImg.src = "./img/hangman_white_0" + this.countError + ".png";
             if (this.countError === 3) {
                 this.gameEnd("You Lost!");
             }
@@ -123,6 +125,7 @@ const wordToGuess = document.querySelector('[word-to-guess]');
 const letterButtons = document.querySelectorAll('[letter]');
 const message = document.querySelector('[message]');
 const playAgain = document.querySelector('[play-again]');
+const hangmanImg = document.querySelector('[hangman-img]');
 
 var hangman = new Hangman();
 

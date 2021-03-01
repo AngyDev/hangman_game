@@ -37,21 +37,37 @@ class Hangman {
         this.arrWord = this.word.toLowerCase().split('');
 
         // Creates an array of the length of the arrWord with only unserscore string
-        const arrWordToGuess = this.arrWord.map(x => "_");
+        this.arrWordToGuess = this.arrWord.map(x => "_");
 
-        return arrWordToGuess.join(' ');
+        return this.arrWordToGuess.join(' ');
     }
 
     checkLetter(letter) {
-        console.log(letter);
+        let lowerLetter = letter.toLowerCase();
         let indexWord = [];
-        if (this.arrWord.includes(letter.toLowerCase())) {
-            indexWord = this.find(letter.toLowerCase(), this.arrWord);
-            console.log(indexWord);
-            console.log("yes");
-        } else {
-            console.log("no");
-        }
+
+        if (this.arrWord.includes(lowerLetter)) {
+            // finds the index/es of the letter in the word
+            indexWord = this.find(lowerLetter, this.arrWord);
+            // inserts the letter in the array of the world to guess
+            this.insertLetter(lowerLetter, indexWord, this.arrWordToGuess);
+            // updates the word to guess 
+            this.updateDisplay();
+
+        } else {}
+    }
+
+    /**
+     * Inserts the letter in the correct position in the array of the
+     * word to guess
+     * @param {String} letter - The letter to add in the array of the word to guess
+     * @param {Array} indexes - The indexes of the letters in the word
+     * @param {Array} arrWordToGuess  - The array of the word to guess
+     * @returns an array with letter and underscore
+     */
+    insertLetter(letter, indexes, arrWordToGuess) {
+        indexes.forEach((element) => arrWordToGuess.splice(element, 1, letter));
+        return arrWordToGuess;
     }
 
     /**
@@ -64,6 +80,13 @@ class Hangman {
         var results = [];
         array.forEach((element, index) => element === letter && results.push(index));
         return results;
+    }
+
+    /**
+     * Updates the html element of the word to guess
+     */
+    updateDisplay() {
+        wordToGuess.innerHTML = this.arrWordToGuess.join(' ');
     }
 
 }

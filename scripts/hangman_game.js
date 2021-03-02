@@ -1,21 +1,42 @@
-var words = [
+const foodWords = [
     { clue: "E' tonda", word: "Pizza" },
     { clue: "E' gialla", word: "Pasta" },
     { clue: "E' famoso quello alla milanese", word: "Risotto" },
     { clue: "Si  mangia quando fa caldo", word: "Gelato" },
 ];
 
+const programing_lang = [
+    { clue: "It's a backend programing language", word: "python" },
+    { clue: "It's used to create beautiful page", word: "css" },
+    { clue: "Without it there aren't sites", word: "html" },
+    { clue: "The world's most popular programming language", word: "javascript" },
+    { clue: "If you are a mathematician...", word: "matlab" },
+    { clue: "It's a general-purpose scripting language", word: "php" },
+    { clue: "It's a backend programing language", word: "java" },
+    { clue: "Combines object-oriented and functional programming", word: "scala" },
+    { clue: "It's similar to JavaScript", word: "typescript" },
+    { clue: "Formula Translation", word: "fortran" },
+    { clue: "Object-Oriented language", word: "csharp" }
+];
+
 class Hangman {
 
     constructor() {
         this.clear();
-        this.chooseWord(words);
     }
 
+    /**
+     * Restores the page
+     */
     clear() {
+        this.objWord = "";
+        this.arrWordToGuess = "";
         this.countError = 0;
+        // Page element
         letterButtons.forEach(button => button.disabled = false);
         playAgain.style.display = "none";
+        showClue.innerHTML = "";
+        wordToGuess.innerHTML = ""
         message.innerHTML = "";
         hangmanImg.src = "./img/hangman_white.png";
     }
@@ -27,6 +48,9 @@ class Hangman {
      */
     chooseWord(array) {
         this.objWord = array[Math.floor(Math.random() * array.length)];
+        // Shows the clue and the underscore for the word to guess
+        showClue.innerHTML = this.showClue();
+        wordToGuess.innerHTML = this.showWord();
     }
 
     /**
@@ -51,6 +75,10 @@ class Hangman {
         return this.arrWordToGuess.join(' ');
     }
 
+    /**
+     * Checks if the letter is in the word
+     * @param {String} letter 
+     */
     checkLetter(letter) {
         let lowerLetter = letter.toLowerCase();
         let indexWord = [];
@@ -68,7 +96,9 @@ class Hangman {
                 this.gameEnd("You Win!");
             }
         } else {
+            // updates the counter of errors
             this.countError += 1;
+            errors.innerHTML = this.countError;
             hangmanImg.src = "./img/hangman_white_0" + this.countError + ".png";
             if (this.countError === 3) {
                 this.gameEnd("You Lost!");
@@ -120,17 +150,25 @@ class Hangman {
 
 }
 
+const programingLang = document.querySelector('[programing-lang]');
+const food = document.querySelector('[food]');
 const showClue = document.querySelector('[show-clue]');
 const wordToGuess = document.querySelector('[word-to-guess]');
 const letterButtons = document.querySelectorAll('[letter]');
 const message = document.querySelector('[message]');
 const playAgain = document.querySelector('[play-again]');
 const hangmanImg = document.querySelector('[hangman-img]');
+const errors = document.querySelector('[errors]');
 
-var hangman = new Hangman();
+programingLang.addEventListener('click', button => {
+    hangman = new Hangman();
+    hangman.chooseWord(programing_lang);
+});
 
-showClue.innerHTML = hangman.showClue();
-wordToGuess.innerHTML = hangman.showWord();
+food.addEventListener('click', button => {
+    hangman = new Hangman();
+    hangman.chooseWord(foodWords);
+});
 
 letterButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -142,6 +180,4 @@ letterButtons.forEach(button => {
 
 playAgain.addEventListener('click', button => {
     hangman = new Hangman();
-    showClue.innerHTML = hangman.showClue();
-    wordToGuess.innerHTML = hangman.showWord();
 });

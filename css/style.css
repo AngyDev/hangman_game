@@ -10,6 +10,10 @@ body {
     font-size: 30px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 button {
     font-family: Pigmento, sans-serif;
     color: white;
@@ -18,7 +22,6 @@ button {
     padding: 5px 18px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 40px;
     margin: 4px 2px;
     cursor: pointer;
@@ -32,26 +35,49 @@ button:disabled {
     text-align: center;
 }
 
+.header>h1 {
+    margin: 20px;
+}
+
+.header>p {
+    margin: 20px;
+}
+
 .header>button {
     margin: 0 auto;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px;
-    width: 100%;
+.hangman-section {
+    text-align: center;
+    float: left;
+    width: 40%;
+    padding: 20px;
 }
 
-.grid-item {
+.guess-section {
+    float: left;
     padding: 20px;
-    font-size: 30px;
+    width: 60%;
     text-align: center;
 }
 
+.guess-section>div>p {
+    font-size: 40px;
+    display: inline;
+}
+
+.section::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .letters-grid {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(13, 100px);
-    grid-template-rows: repeat(3, 100px);
+    padding: 10px;
+    text-align: center;
+}
+
+.letters-grid>button {
+    width: 70px;
+    height: 70px;
 }

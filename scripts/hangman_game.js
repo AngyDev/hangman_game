@@ -74,7 +74,7 @@ class Hangman {
         this.arrWord = this.word.toLowerCase().split('');
 
         // Creates an array of the length of the arrWord with only unserscore string
-        this.arrWordToGuess = this.arrWord.map(x => "_");
+        this.arrWordToGuess = this.arrWord.map(() => "_");
 
         return this.arrWordToGuess.join(' ');
     }

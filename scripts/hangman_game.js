@@ -1,8 +1,11 @@
 const foodWords = [
-    { clue: "E' tonda", word: "Pizza" },
-    { clue: "E' gialla", word: "Pasta" },
-    { clue: "E' famoso quello alla milanese", word: "Risotto" },
-    { clue: "Si  mangia quando fa caldo", word: "Gelato" },
+    { clue: "It's round", word: "Pizza" },
+    { clue: "It's a staple food of Italian cuisine", word: "Pasta" },
+    { clue: "The Milanese one is famous", word: "Risotto" },
+    { clue: "It's perfect when it's hot", word: "Icicle" },
+    { clue: "You drink it to stay awake", word: "Coffee" },
+    { clue: "Do you prefer it with ketchup or mayonnaise", word: "Hamburger" },
+    { clue: "Fried are perfect", word: "Chips" },
 ];
 
 const programing_lang = [

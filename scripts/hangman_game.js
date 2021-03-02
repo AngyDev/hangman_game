@@ -160,7 +160,7 @@ class Hangman {
     gameEnd(msg) {
         message.innerHTML = msg;
         letterButtons.forEach(button => button.disabled = true);
-        playAgain.style.display = "block";
+        playAgain.style.display = "inline";
     }
 
 }

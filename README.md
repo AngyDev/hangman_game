@@ -19,7 +19,7 @@ Hangman is a simple game that revolves around guessing a randomly chosen word.
 
 If you want to try the game click the [link](https://newhangman.netlify.app/)
 
-![alt-text](img/hangman_game_screenshot.jpg "Hangman game")
+![Hangman game](img/hangman_game_screenshot.JPG "Hangman game")
 
 ## Technologies
 

@@ -4,7 +4,7 @@ const foodWords = [
     { clue: "The Milanese one is famous", word: "Risotto" },
     { clue: "It's perfect when it's hot", word: "Icicle" },
     { clue: "You drink it to stay awake", word: "Coffee" },
-    { clue: "Do you prefer it with ketchup or mayonnaise", word: "Hamburger" },
+    { clue: "You eat it with ketchup or mayonnaise", word: "Hamburger" },
     { clue: "Fried are perfect", word: "Chips" },
 ];
 
@@ -41,6 +41,7 @@ class Hangman {
         showClue.innerHTML = "";
         wordToGuess.innerHTML = ""
         message.innerHTML = "";
+        errors.innerHTML = "";
         hangmanImg.src = "./img/hangman_white.png";
     }
 
@@ -99,10 +100,9 @@ class Hangman {
                 this.gameEnd("You Win!");
             }
         } else {
-            // updates the counter of errors
-            this.countError += 1;
-            errors.innerHTML = this.countError;
-            hangmanImg.src = "./img/hangman_white_0" + this.countError + ".png";
+            // Updates the errors counter
+            this.updateMistakes();
+            // If the errors are three the user has lost
             if (this.countError === 3) {
                 this.gameEnd("You Lost!");
             }
@@ -132,6 +132,18 @@ class Hangman {
         var results = [];
         array.forEach((element, index) => element === letter && results.push(index));
         return results;
+    }
+
+    /**
+     * Updates the counter of errors and the hangman image
+     */
+    updateMistakes() {
+        // updates the counter of errors
+        this.countError += 1;
+        // updates mistakes in the page
+        errors.innerHTML = this.countError;
+
+        hangmanImg.src = "./img/hangman_white_0" + this.countError + ".png";
     }
 
     /**

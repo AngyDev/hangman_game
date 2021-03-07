@@ -1,3 +1,5 @@
+const keyboard = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
 const foodWords = [
     { clue: "It's round", word: "Pizza" },
     { clue: "It's a staple food of Italian cuisine", word: "Pasta" },
@@ -43,6 +45,19 @@ class Hangman {
         message.innerHTML = "";
         errors.innerHTML = "";
         hangmanImg.src = "./img/hangman_white.png";
+    }
+
+    /**
+     * Creates the keyboard
+     */
+    createKeyboard() {
+        keyboard.forEach(item => {
+            var node = document.createElement("button");
+            node.setAttribute("name", "letter");
+            var textNode = document.createTextNode(item);
+            node.appendChild(textNode);
+            document.getElementById("keyboard").appendChild(node);
+        });
     }
 
     /**
@@ -169,19 +184,20 @@ const programingLang = document.querySelector('[programing-lang]');
 const food = document.querySelector('[food]');
 const showClue = document.querySelector('[show-clue]');
 const wordToGuess = document.querySelector('[word-to-guess]');
-const letterButtons = document.querySelectorAll('[letter]');
-const message = document.querySelector('[message]');
+const letterButtons = document.getElementsByName('letter');
+const message = document.getElementById('message');
 const playAgain = document.querySelector('[play-again]');
 const hangmanImg = document.querySelector('[hangman-img]');
 const errors = document.querySelector('[errors]');
 
+hangman = new Hangman();
+hangman.createKeyboard();
+
 programingLang.addEventListener('click', button => {
-    hangman = new Hangman();
     hangman.chooseWord(programing_lang);
 });
 
 food.addEventListener('click', button => {
-    hangman = new Hangman();
     hangman.chooseWord(foodWords);
 });
 

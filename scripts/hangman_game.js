@@ -51,12 +51,20 @@ class Hangman {
      * Creates the keyboard
      */
     createKeyboard() {
-        keyboard.forEach(item => {
+        keyboard.forEach((item, index) => {
             var node = document.createElement("button");
             node.setAttribute("name", "letter");
             var textNode = document.createTextNode(item);
             node.appendChild(textNode);
-            document.getElementById("keyboard").appendChild(node);
+
+            if (index < 10) {
+                document.getElementById("keyboard-row1").appendChild(node);
+            } else if (index >= 10 && index < 19) {
+                document.getElementById("keyboard-row2").appendChild(node);
+            } else if (index >= 19 && index < 26) {
+                node.setAttribute("class", "col");
+                document.getElementById("keyboard-row3").appendChild(node);
+            }
         });
     }
 

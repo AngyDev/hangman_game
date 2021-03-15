@@ -72,12 +72,21 @@ button:disabled {
     clear: both;
 }
 
-.letters-grid {
-    padding: 10px;
-    text-align: center;
+.grid {
+    max-width: 1024px;
+    margin: auto;
+    justify-content: center;
 }
 
-.letters-grid>button {
-    width: 70px;
-    height: 70px;
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+#keyboard-row2 {
+    margin-left: 3em;
+}
+
+#keyboard-row3 {
+    margin-left: 8em;
 }
